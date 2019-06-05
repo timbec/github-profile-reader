@@ -90,6 +90,9 @@ load both keys in a .env.local (at root level) and add the following:
 Then the call becomes: 
 `    const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET_ID}`);`
 
+we use curly braces when the imported object is not the default export: 
+`import { Link } from 'react-router-dom';`
+
 
 
 
