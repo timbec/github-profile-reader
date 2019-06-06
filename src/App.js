@@ -11,6 +11,9 @@ import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 
 import axios from 'axios';
+
+import GithubState from './context/github/githubState'; 
+
 import './App.css';
 import { async } from 'q';
 
@@ -40,20 +43,6 @@ const App = () => {
     const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET_ID}`);
 
     setUsers(res.data.items);
-    setLoading(false); 
-  }
-
-  //Search Github Users
-  const searchUsers = async text => {
-
-    setLoading(true);
-
-    const res = await axios.get(`https://api.github.com/search/users?q=${text}&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret={process.env.REACT_APP_GITHUB_SECRET_ID}`);
-
-    console.log(res.data);
-
-    // this.setState({ users: res.data.items, loading: false });
-    setUsers(res.data.items); 
     setLoading(false); 
   }
 
@@ -99,7 +88,8 @@ const App = () => {
   }
 
     return (
-      <Router>
+      <GithubState>
+              <Router>
         <header className="App-header">
           <Navbar
             title="Github Finder"
@@ -115,7 +105,7 @@ const App = () => {
               render={props => (
                 <Fragment>
                   <Search
-                    searchUsers={searchUsers} clearUsers={clearUsers}
+                     clearUsers={clearUsers}
                     showClear={
                       users.length > 0 ? true : false
                     }
@@ -146,6 +136,7 @@ const App = () => {
 
         </div>
       </Router>
+      </GithubState>
     );
 }
 
