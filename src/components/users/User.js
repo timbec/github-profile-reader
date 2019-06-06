@@ -12,25 +12,33 @@ export class User extends Component {
 
     static propTypes = {
         loading: PropTypes.bool,
-        user: PropTypes.object.isRequired,
         getUser: PropTypes.func.isRequired,
     }
 
     render() {
+        console.log(this.props.user)
         const {
-            name,
-            company,
-            avatar_url,
-            location,
-            bio,
-            blog,
+            id, 
             login,
+            organizations_url,
+            received_events,
+            repos_url,
+            score,
+            starred_url,
+            avatar_url, 
+            events_url, 
+            followers_url,
+            following_url,
+            gists_url, 
             html_url,
-            followers,
-            following,
-            public_repos,
-            public_gists,
-            hireable
+            subscriptions_url,
+            type, 
+            url, 
+            bio, 
+            blog, 
+            company, 
+            hireable, 
+            location
 
         } = this.props.user;
 
@@ -57,7 +65,7 @@ export class User extends Component {
                             alt=''
                             style={{ width: '150px' }}
                         />
-                        <h1>{name}</h1>
+                        <h1>{login}</h1>
                         <p>Location: {location}</p>
                     </div>
                     <div>
